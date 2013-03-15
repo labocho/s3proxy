@@ -18,4 +18,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.add_dependency "rails", "~> 3.2"
   gem.add_dependency "carrierwave", "~> 0.8.0"
+  gem.add_dependency "fog"
 end

@@ -3,8 +3,8 @@ require "s3proxy/version"
 module S3Proxy
   CONFIGURATIONS = [:internal_url_prefix, :access_key_id, :secret_access_key, :bucket, :region]
 
-  autoload :ActionController, "s3_proxy/action_controller"
-  autoload :CarrierWave, "s3_proxy/carrier_wave"
+  autoload :ActionController, "s3proxy/action_controller"
+  autoload :CarrierWave, "s3proxy/carrier_wave"
 
   mattr_accessor *CONFIGURATIONS
 
