@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-  gem.add_dependency "rails", "~> 3.2"
+  gem.add_dependency "rails", "~> 4.0"
   gem.add_dependency "carrierwave", "~> 0.8.0"
   gem.add_dependency "fog"
 end
