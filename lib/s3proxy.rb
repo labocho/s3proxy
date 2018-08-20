@@ -25,10 +25,6 @@ module S3Proxy
     @internal_url_prefix ||= "/protected/s3/"
   end
 
-  def to_internal_url(url)
-    internal_url_prefix + url
-  end
-
   def use_as_default
     ::CarrierWave::Uploader::Base.send :use_s3_proxy
   end

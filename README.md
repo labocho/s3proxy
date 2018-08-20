@@ -45,12 +45,15 @@ Or install it yourself as:
 # nginx.conf
 
     # See S3Proxy.internal_url_prefix
-    location ~ ^/protected/s3/(.*)$ {
+    location ~ ^/protected/s3/ {
       resolver 8.8.8.8; # using Google Public DNS
       internal;
+
       proxy_set_header Authorization ""; # Authorization ヘッダが S3 に渡ると S3 の認証と見なされるため削除
       proxy_set_header Content-Type ""; # Content-Type ヘッダが S3 に渡ると署名が一致しなくなるので削除
-      proxy_pass $1?$args;
+
+      set $x_accel_redirect_to $upstream_http_x_accel_redirect_to;
+      proxy_pass $x_accel_redirect_to;
     }
 
 

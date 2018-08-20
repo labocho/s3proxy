@@ -36,7 +36,9 @@ module S3Proxy
         if uploader.use_s3_proxy?
           url = uploader.url
           url = url.gsub(/\Ahttps:/, "http:") unless request.ssl? # url は https で、そのままだと nginx が処理できないため http にする
-          headers[Rails.application.config.action_dispatch.x_sendfile_header] = S3Proxy.to_internal_url(url)
+          # % encoding の処理が複雑になるので リダイレクト先の URL は別ヘッダ (X-Accel-Redirect-To) に
+          headers[Rails.application.config.action_dispatch.x_sendfile_header] = S3Proxy.internal_url_prefix
+          headers["X-Accel-Redirect-To"] = url
           send_data "", options
         else
           path = uploader.current_path
